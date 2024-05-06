@@ -1,0 +1,119 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff; /* Fundo branco */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #8a2be2; /* Lilás */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Efeito de transição suave */
+}
+
+button:hover {
+  background-color: #6a5acd; /* Lilás mais escuro no hover */
+}
+
+.heart-span {
+  color: #00bfff; /* Azul bebê para o coração */
+}
+
+/* CSS */
+
+/* Corrigindo o posicionamento da modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: modalFadeIn 1.2s ease; /* Animação de entrada suave */
+}
+.modal.delayed {
+  animation-delay: 0.5s; /* Atraso de 0.5 segundos */
+}
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Centralizando o conteúdo da modal */
+.modal-content {
+  background-color: #ffffff; /* Fundo branco */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2px;
+  border: 1px solid #8a2be2; /* Lilás para a borda */
+  width: 70%;
+  max-width: 500px; /* Limitando a largura da modal */
+  text-align: center; /* Centralizando o texto */
+}
+
+/* Estilizando o cabeçalho da modal */
+.modal-header {
+  background-color: #8a2be2; /* Lilás */
+  padding: 15px;
+  color: white;
+  margin-top: -2px;
+  margin-inline: -2px;
+  border-top-left-radius: 5px; /* Arredondando o canto superior esquerdo */
+  border-top-right-radius: 5px; /* Arredondando o canto superior direito */
+}
+
+/* Estilizando o botão de fechar */
+.close {
+  color: rgb(f, f, f); /* Branco */
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: -14px;
+}
+
+.close:hover,
+.close:focus {
+  color: #f0f0f0; /* Branco mais claro no hover */
+  text-decoration: none;
+}
+
+#message {
+  padding: 1rem 0;
+}
+
+/* Animação de tremor para o botão */
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  10%, 90% { transform: translate(-5px, 0); }
+  20%, 80% { transform: translate(5px, 0); }
+  30%, 50%, 70% { transform: translate(-5px, 0); }
+  40%, 60% { transform: translate(5px, 0); }
+  100% { transform: translate(0, 0); }
+}
+
+button:hover {
+  animation: shake 0.3s ease; /* Aplica a animação de tremor no hover */
+  transition: background-color 0.5s ease 0.5s; /* Atraso de 0.5 segundos */
+}
