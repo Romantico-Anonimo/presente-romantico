@@ -189,7 +189,17 @@ var messages = [
   "Quem diria que um simples rolê aleatório traria tantas coisas boas (como o amor da minha vida), né? Bendito seja 03/02/2024. ❤️",
   "Eu adoro você. 😊🥰😻",
   "Eu lhe quero para sempre. ❤️♾️",
-  "Quero que você seja minha companheira para o resto da vida. ❤️"
+  "Quero que você seja minha companheira para o resto da vida. ❤️",
+  "Meu sonho não está na padaria, está lendo isso aqui agora. 💘",
+  "Só queria lhe lembrar que você é muito linda. 😻",
+  "Eu queria lhe dar o mundo, mas lembrei que tem muita gente e eu sou ciumento. 😑😅",
+  "Você é a mais bela obra de arte que eu já vi. Eu nunca me canso de admirar. 😻🤗",
+  "Sou apaixonado por você desde a primeira vez que lhe vi. 😻💘",
+  "Só para de pensar em você quando começo a sonhar com você. 🥰😻",
+  "Quando não estou pensando em você, estou pensando em nós dois. 💘",
+  "Por tê-la em minha vida, me sinto o homem mais sortudo do mundo. 🗺️🍀💝",
+  "Na minha vida você é mais que um presente, é uma dádiva. 💝💘😻",
+  "Seu sorriso ilumina a minha alma. 💘🥰"
 ];
 
 var shuffledMessages = [];
@@ -206,27 +216,42 @@ function shuffleArray(array) {
   return array;
 }
 
+// Definição das animações
+var buttonAnimations = ["shake-animation", "rotate-animation", "pulse-animation", "bounce-animation", "flash-animation"];
+var modalAnimations = ["fadeIn-animation", "slideIn-animation", "flip-animation", "zoomIn-animation", "bounceIn-animation"];
+var currentButtonAnimationIndex = Math.floor(Math.random() * buttonAnimations.length);
+var currentModalAnimationIndex = Math.floor(Math.random() * modalAnimations.length);
+
 document.getElementById("surpriseButton").addEventListener("click", function() {
-  // Embaralha a lista de frases apenas no primeiro clique
-  if (shuffledMessages.length === 0) {
+  // Escolhe aleatoriamente uma nova animação para o botão
+  var nextButtonAnimationIndex = Math.floor(Math.random() * buttonAnimations.length);
+  while (nextButtonAnimationIndex === currentButtonAnimationIndex) {
+    nextButtonAnimationIndex = Math.floor(Math.random() * buttonAnimations.length);
+  }
+  document.getElementById("surpriseButton").classList.remove(buttonAnimations[currentButtonAnimationIndex]);
+  currentButtonAnimationIndex = nextButtonAnimationIndex;
+  document.getElementById("surpriseButton").classList.add(buttonAnimations[currentButtonAnimationIndex]);
+
+  // Escolhe aleatoriamente uma nova animação para a modal
+  var nextModalAnimationIndex = Math.floor(Math.random() * modalAnimations.length);
+  while (nextModalAnimationIndex === currentModalAnimationIndex) {
+    nextModalAnimationIndex = Math.floor(Math.random() * modalAnimations.length);
+  }
+  document.getElementById("myModal").classList.remove(modalAnimations[currentModalAnimationIndex]);
+  currentModalAnimationIndex = nextModalAnimationIndex;
+  document.getElementById("myModal").classList.add(modalAnimations[currentModalAnimationIndex]);
+
+  // Embaralha a lista de frases apenas no primeiro clique ou se todas as frases já foram exibidas
+  if (shuffledMessages.length === 0 || currentIndex >= shuffledMessages.length) {
     shuffledMessages = shuffleArray(messages);
     currentIndex = 0;
   }
 
   // Mostra a próxima frase da lista embaralhada
-  if (currentIndex < shuffledMessages.length) {
-    document.getElementById("message").textContent = shuffledMessages[currentIndex];
-    document.getElementById("myModal").style.display = "block";
-    currentIndex++;
-  } else {
-    // Se todas as frases foram exibidas, embaralha a lista novamente
-    shuffledMessages = shuffleArray(messages);
-    currentIndex = 0;
-    // Exibe a primeira frase da nova lista embaralhada
-    document.getElementById("message").textContent = shuffledMessages[currentIndex];
-    document.getElementById("myModal").style.display = "block";
-    currentIndex++;
-  }
+  document.getElementById("message").textContent = shuffledMessages[currentIndex];
+  document.getElementById("messageNumber").textContent = (currentIndex + 1) + '/' + shuffledMessages.length;
+  document.getElementById("myModal").style.display = "block";
+  currentIndex++;
 });
 
 document.getElementsByClassName("close")[0].addEventListener("click", function() {
